@@ -16,6 +16,7 @@
             <el-button type="primary" size="mini" @click="clickDelete"
                 >Delete</el-button
             >
+            {{ numberOfCompletedTodo }}
         </div>
     </div>
 </template>
@@ -28,17 +29,27 @@ export default {
             required: true,
         },
     },
+    computed: {
+        numberOfCompletedTodo() {
+            return this.$store.getters['todo/numberOfCompletedTodo'];
+        },
+    },
     methods: {
         toggleCheckbox(e) {
-            this.$store.commit('mutaToggleTodo', {
+            this.$store.dispatch("todo/actToggleTodo", {
                 id: this.todo.id,
                 checked: e.target.checked,
-            })
-            this.$emit("toggle-checkbox", {
             });
+            // this.$store.commit('mutaToggleTodo', {
+            //     id: this.todo.id,
+            //     checked: e.target.checked,
+            // })
+            // this.$emit("toggle-checkbox", {
+            // });
         },
         clickDelete() {
-            this.$store.commit('mutaDeleteTodo', this.todo.id)
+            this.$store.dispatch("todo/actDeleteTodo", this.todo.id);
+            // this.$store.commit('mutaDeleteTodo', this.todo.id)
             // this.$emit("click-delete", this.todo.id);
         },
     },

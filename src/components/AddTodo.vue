@@ -19,7 +19,7 @@ export default {
     methods: {
         addTodo(e) {
             // this.$store.commit('mutaAddTodo', e.target.value) // mutations commit
-            this.$store.dispatch('actAddTodo', e.target.value) // actions dispatch
+            this.$store.dispatch('todo/actAddTodo', e.target.value) // actions dispatch
             this.todoText = ''
             // console.log(e.target.value)
             // this.$emit('add-todo', e.target.value);
